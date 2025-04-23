@@ -10,6 +10,8 @@ updates:
   - package-ecosystem: "composer"
     directory: "/"
     # Following the usual publishing time of Drupal Security Advisories.
+    allow:
+      - dependency-type: "all"
     schedule:
       interval: "weekly"
       day: "thursday"
