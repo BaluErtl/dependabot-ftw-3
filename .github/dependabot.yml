@@ -1,15 +1,17 @@
 ---
 version: 2
 updates:
+  # This one comes OOtB from the `dependabot/demo` template:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-  - package-ecosystem: npm
-    directory: "/javascript"
+  # For our use case `composer` is also needed:
+  - package-ecosystem: "composer"
+    directory: "/"
+    # Following the usual publishing time of Drupal Security Advisories.
     schedule:
       interval: "weekly"
-  - package-ecosystem: bundler
-    directory: "/ruby"
-    schedule:
-      interval: "weekly"
+      day: "thursday"
+      time: "10:00"
+      timezone: "Europe/Budapest"
