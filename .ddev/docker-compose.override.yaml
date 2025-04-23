@@ -1,0 +1,4 @@
+services:
+  web:
+    volumes:
+      - "/Users/baluertl/_my_local_packagist:/var/www/_my_local_packagist"

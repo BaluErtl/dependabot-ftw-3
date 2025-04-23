@@ -1,1 +1,74 @@
-node_modules/
+# This file contains default .gitignore rules. To use it, copy it to .gitignore,
+# and it will cause files like your settings.php and user-uploaded files to be
+# excluded from Git version control. This is a common strategy to avoid
+# accidentally including private information in public repositories and patch
+# files.
+#
+# Because .gitignore can be specific to your site, this file has a different
+# name; updating Drupal core will not override your custom .gitignore file.
+
+# Ignore configuration files that may contain sensitive information.
+# web/sites/*/services*.yml
+web/sites/*/settings.*.php
+web/sites/*/private
+web/sites/default/files
+web/sites/simpletest
+private
+temporary
+
+# Ignore dependencies that are managed with Composer.
+# Generally you should only ignore the root vendor directory. It's important
+# that core/assets/vendor and any other vendor directories within contrib or
+# custom module, theme, etc., are not ignored unless you purposely do so.
+/vendor/
+
+# Ignore Composer-generated all autoloader files wherever they appear in the directory tree.
+autoload.php
+
+# Ignore core when managing all of a project's dependencies with Composer
+# including Drupal core.
+web/core
+# web/modules/contrib       <-- kikapcsoltam a külső forrásból behúzott Drupal-modul miatt. Lásd a következő szakaszt.
+web/profiles/contrib
+web/themes/contrib
+
+#================================= Kérek egy Drupalt! ==================================================================
+
+# A hivatalos doksi (https://git-scm.com/docs/gitignore#_pattern_format) Deepl-fordítása:
+#
+# Egy opcionális "!" előtag, amely negálja a mintát; minden egyező fájl, amelyet egy korábbi minta kizárt, újra szerepel.
+# Nem lehetséges egy fájl újbóli felvétele, ha a fájl szülői könyvtára ki van zárva. A Git a teljesítmény miatt nem lis-
+# tázza a kizárt könyvtárakat, így a benne lévő fájlokra vonatkozó mintáknak nincs hatása, függetlenül attól, hogy hol
+# vannak definiálva. A szó szerinti "!" betűvel kezdődő minták esetében tegyen egy backslash-t ("\") az első "!" elé,
+# például "\!fontos!.txt".
+#
+# A "/" perjelet könyvtárelválasztóként használjuk. Az elválasztójelek a .gitignore keresési minta elején, közepén vagy
+# végén is előfordulhatnak. Ha minta elején vagy közepén (vagy mindkettőben) van elválasztó, akkor a minta magának az
+# adott .gitignore fájlnak a könyvtárszintjéhez viszonyítva van. Egyébként a minta a .gitignore szint alatti bármely
+# szinten is megfelelhet.
+#
+# Ha a minta végén egy elválasztójel van, akkor a minta csak könyvtárakra illeszkedik, egyébként a minta mind fájlokra,
+# mind könyvtárakra illeszkedhet.
+#
+# Például:
+#   - a „doc/frotz/” minta a „doc/frotz” könyvtárra illik, de az „a/doc/frotz” könyvtárra nem
+#   - a „frotz/” minta viszont a „frotz” és az „a/frotz” könyvtárra illik (minden útvonal relatív a .gitignore fájlból)
+#
+# A „/” kivételével a „*” bármennyi, a „?” viszont csak 1 db karakterre illik.
+#
+# A tartomány jelölés, pl. [a-zA-Z], használható a tartományban lévő karakterek egyikének megfeleltetésére. Lásd az
+# fnmatch(3) és az FNM_PATHNAME jelző részletesebb leírását.
+
+# A fentiek fényében ez tehát a gyökér könyvtár, amit ki akarunk zárni:
+web/modules/contrib/**/*
+
+# És ez pedig annak egy alkönyvtára, amit mégis követni szeretnénk:
+!web/modules/contrib/acquia_dam
+
+# Forrás: https://web.archive.org/web/20231110104638/https://stackoverflow.com/questions/5533050/gitignore-exclude-folder-but-include-specific-subfolder/18702826#18702826
+
+# Ezek a Drupal kontrib moduloknak a saját gépemen máshol tárolt forráskódjainak Docker-konténerbe behúzásához kellenek:
+/_my_local_packagist
+/Repos
+
+#===============================// Kérek egy Drupalt! ==================================================================
